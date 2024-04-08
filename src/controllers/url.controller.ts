@@ -38,7 +38,7 @@ async function handleRedirectUserToGivenURL(
     //   TODO: handle api error
     //   }
 
-    res.redirect(result?.redirectUrl);
+    res.redirect((result?.redirectUrl as string));
   } catch (error) {
     next(error);
   }
