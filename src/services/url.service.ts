@@ -11,4 +11,20 @@ const createShortId = async (redirectURL: string) => {
   return result;
 };
 
-export const urlServices = { createShortId };
+const redirectUserToGivenURL = async (shortId: string) => {
+  const result = await URL.findOneAndUpdate(
+    {
+      shortId,
+    },
+    {
+      $push: {
+        visitHistory: {
+          timestamp: Date.now(),
+        },
+      },
+    },
+  );
+  return result;
+};
+
+export const urlServices = { createShortId, redirectUserToGivenURL };

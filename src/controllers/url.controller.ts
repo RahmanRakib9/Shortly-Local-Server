@@ -24,4 +24,27 @@ async function handleGenerateNewShortURL(
   }
 }
 
-export const urlControllers = { handleGenerateNewShortURL };
+async function handleRedirectUserToGivenURL(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const shortId = req.params.shortId;
+    const result = await urlServices.redirectUserToGivenURL(shortId);
+
+    // if(!result)
+    //   {
+    //   TODO: handle api error
+    //   }
+
+    res.redirect(result?.redirectUrl);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export const urlControllers = {
+  handleGenerateNewShortURL,
+  handleRedirectUserToGivenURL,
+};
