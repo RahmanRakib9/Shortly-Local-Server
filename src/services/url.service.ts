@@ -11,6 +11,11 @@ const createShortId = async (redirectURL: string) => {
   return result;
 };
 
+const getShortURLs = async () => {
+  const urls = await URL.find();
+  return urls;
+};
+
 const redirectUserToGivenURL = async (shortId: string) => {
   const result = await URL.findOneAndUpdate(
     {
@@ -27,4 +32,8 @@ const redirectUserToGivenURL = async (shortId: string) => {
   return result;
 };
 
-export const urlServices = { createShortId, redirectUserToGivenURL };
+export const urlServices = {
+  createShortId,
+  getShortURLs,
+  redirectUserToGivenURL,
+};

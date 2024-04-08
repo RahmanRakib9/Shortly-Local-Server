@@ -24,6 +24,23 @@ async function handleGenerateNewShortURL(
   }
 }
 
+async function handleGetShortURLs(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const urls = await urlServices.getShortURLs();
+    res.status(201).json({
+      success: true,
+      message: 'successfully retrieved urls',
+      payload: urls,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function handleRedirectUserToGivenURL(
   req: Request,
   res: Response,
@@ -38,7 +55,7 @@ async function handleRedirectUserToGivenURL(
     //   TODO: handle api error
     //   }
 
-    res.redirect((result?.redirectUrl as string));
+    res.redirect(result?.redirectUrl as string);
   } catch (error) {
     next(error);
   }
@@ -47,4 +64,5 @@ async function handleRedirectUserToGivenURL(
 export const urlControllers = {
   handleGenerateNewShortURL,
   handleRedirectUserToGivenURL,
+  handleGetShortURLs,
 };
