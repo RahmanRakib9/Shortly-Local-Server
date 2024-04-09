@@ -13,11 +13,11 @@ async function handleGenerateNewShortURL(
     //   TODO: handle api error
     // }
 
-    const result = await urlServices.createShortId(redirectURL);
+    const shortURL = await urlServices.createShortURL(redirectURL);
     res.json({
       success: true,
-      message: 'successfully generate short unique url',
-      payload: result,
+      message: 'Successfully generated short url',
+      payload: shortURL,
     });
   } catch (error) {
     next(error);

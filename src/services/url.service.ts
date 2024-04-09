@@ -1,14 +1,14 @@
 import URL from '../models/url.model';
 import { generateUniqueRandomString } from '../utils/generateUniqueRandomString';
 
-const createShortId = async (redirectURL: string) => {
+const createShortURL = async (redirectURL: string) => {
   const shortId = generateUniqueRandomString(6);
-  const result = await URL.create({
+  const shortURL = await URL.create({
     shortId: shortId,
     redirectUrl: redirectURL,
     visitHistory: [],
   });
-  return result;
+  return shortURL;
 };
 
 const getShortURLs = async () => {
@@ -38,7 +38,7 @@ const getAnalytics = async (shortId: string) => {
 };
 
 export const urlServices = {
-  createShortId,
+  createShortURL,
   getShortURLs,
   redirectUserToGivenURL,
   getAnalytics,
