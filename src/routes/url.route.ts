@@ -3,7 +3,7 @@ import { urlControllers } from '../controllers/url.controller';
 
 const router = express.Router();
 
-router.post('/url', urlControllers.handleGenerateNewShortURL);
+router.post('/url', urlControllers.handleCreateNewShortURL);
 
 router.get('/urls', urlControllers.handleGetShortURLs);
 

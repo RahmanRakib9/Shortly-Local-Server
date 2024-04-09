@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { urlServices } from '../services/url.service';
 
-async function handleGenerateNewShortURL(
+async function handleCreateNewShortURL(
   req: Request,
   res: Response,
   next: NextFunction,
@@ -80,7 +80,7 @@ async function handleGetAnalytics(
 }
 
 export const urlControllers = {
-  handleGenerateNewShortURL,
+  handleCreateNewShortURL,
   handleRedirectUserToGivenURL,
   handleGetShortURLs,
   handleGetAnalytics,
