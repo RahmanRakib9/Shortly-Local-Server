@@ -32,8 +32,14 @@ const redirectUserToGivenURL = async (shortId: string) => {
   return result;
 };
 
+const getAnalytics = async (shortId: string) => {
+  const result = await URL.findOne({ shortId });
+  return result;
+};
+
 export const urlServices = {
   createShortId,
   getShortURLs,
   redirectUserToGivenURL,
+  getAnalytics,
 };

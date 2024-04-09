@@ -61,8 +61,27 @@ async function handleRedirectUserToGivenURL(
   }
 }
 
+async function handleGetAnalytics(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const shortId = req.params.shortId;
+    const result = await urlServices.getAnalytics(shortId);
+
+    res.status(200).json({
+      totalClicks: result?.visitHistory.length,
+      payload: result?.visitHistory,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export const urlControllers = {
   handleGenerateNewShortURL,
   handleRedirectUserToGivenURL,
   handleGetShortURLs,
+  handleGetAnalytics,
 };

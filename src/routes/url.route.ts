@@ -9,5 +9,7 @@ router.get('/urls', urlControllers.handleGetShortURLs);
 
 router.get('/:shortId', urlControllers.handleRedirectUserToGivenURL);
 
+router.get('/analytics/:shortId', urlControllers.handleGetAnalytics);
+
 const urlRoutes = router;
 export default urlRoutes;
