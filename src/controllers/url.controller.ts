@@ -68,11 +68,11 @@ async function handleGetAnalytics(
 ) {
   try {
     const shortId = req.params.shortId;
-    const result = await urlServices.getAnalytics(shortId);
+    const analytics = await urlServices.getAnalytics(shortId);
 
     res.status(200).json({
-      totalClicks: result?.visitHistory.length,
-      payload: result?.visitHistory,
+      totalClicks: analytics?.visitHistory.length,
+      payload: analytics?.visitHistory,
     });
   } catch (error) {
     next(error);
