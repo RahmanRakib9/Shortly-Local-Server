@@ -17,7 +17,7 @@ const getShortURLs = async () => {
 };
 
 const redirectUserToGivenURL = async (shortId: string) => {
-  const result = await URL.findOneAndUpdate(
+  const foundDocument = await URL.findOneAndUpdate(
     {
       shortId,
     },
@@ -29,7 +29,7 @@ const redirectUserToGivenURL = async (shortId: string) => {
       },
     },
   );
-  return result;
+  return foundDocument;
 };
 
 const getAnalytics = async (shortId: string) => {
