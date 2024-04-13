@@ -9,5 +9,10 @@ const createNewUser = async (name: string, email: string, password: string) => {
   return user;
 };
 
-const userServices = { createNewUser };
+const signInUser = async (email: string, password: string) => {
+  const user = await User.findOne({ email, password });
+  return user;
+};
+
+const userServices = { createNewUser, signInUser };
 export default userServices;
