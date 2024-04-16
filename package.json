@@ -25,6 +25,7 @@
   "author": "Rakibur Rahman Rakib",
   "license": "ISC",
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
