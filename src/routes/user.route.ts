@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.post('/register', userControllers.handleCreateNewUser);
 
+router.get('/users', userControllers.handleGetAllUsers);
+
 router.post('/login', userControllers.handleSignInUser);
 
 const userRoutes = router;

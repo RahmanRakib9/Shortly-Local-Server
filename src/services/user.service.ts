@@ -12,10 +12,15 @@ const createNewUser = async (name: string, email: string, password: string) => {
   return user;
 };
 
+const getAllUser = async () => {
+  const users = await User.find();
+  return users;
+};
+
 const signInUser = async (email: string, password: string) => {
   const user = await User.findOne({ email, password });
   return user;
 };
 
-const userServices = { createNewUser, signInUser };
+const userServices = { createNewUser, signInUser, getAllUser };
 export default userServices;

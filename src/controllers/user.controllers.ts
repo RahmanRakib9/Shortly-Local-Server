@@ -21,6 +21,24 @@ async function handleCreateNewUser(
   }
 }
 
+async function handleGetAllUsers(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const users = await userServices.getAllUser();
+
+    res.status(httpStatus.CREATED).json({
+      success: true,
+      message: 'All Users Retrieved Successfully!',
+      payload: users,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function handleSignInUser(
   req: Request,
   res: Response,
@@ -40,5 +58,9 @@ async function handleSignInUser(
   }
 }
 
-const userControllers = { handleCreateNewUser, handleSignInUser };
+const userControllers = {
+  handleCreateNewUser,
+  handleGetAllUsers,
+  handleSignInUser,
+};
 export default userControllers;
