@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import userServices from '../services/user.service';
-import httpStatus = require('http-status');
+import httpStatus from 'http-status';
 
 async function handleCreateNewUser(
   req: Request,
