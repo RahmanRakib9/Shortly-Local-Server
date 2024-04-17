@@ -10,11 +10,16 @@ async function handleCreateNewUser(
   try {
     const { name, email, password } = req.body;
     const user = await userServices.createNewUser(name, email, password);
+    const userPayload = {
+      name: user.name,
+      email: user.email,
+      _id: user._id,
+    };
 
     res.status(httpStatus.CREATED).json({
       success: true,
       message: 'User Created Successfully!',
-      payload: user,
+      payload: userPayload,
     });
   } catch (error) {
     next(error);
