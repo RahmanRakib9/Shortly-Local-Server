@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { urlServices } from '../services/url.service';
+import httpstatus from "http-status"
 
 async function handleCreateNewShortURL(
   req: Request,
@@ -14,7 +15,7 @@ async function handleCreateNewShortURL(
     // }
 
     const shortURL = await urlServices.createShortURL(redirectURL);
-    res.json({
+    res.status(httpstatus.CREATED).json({
       success: true,
       message: 'Successfully generated short url',
       payload: shortURL,
