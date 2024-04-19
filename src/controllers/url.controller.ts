@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { urlServices } from '../services/url.service';
-import httpstatus from "http-status"
+import httpstatus from 'http-status';
 
 async function handleCreateNewShortURL(
   req: Request,
