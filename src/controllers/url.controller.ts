@@ -32,7 +32,7 @@ async function handleGetShortURLs(
 ) {
   try {
     const urls = await urlServices.getShortURLs();
-    res.status(201).json({
+    res.status(httpstatus.OK).json({
       success: true,
       message: 'successfully retrieved urls',
       payload: urls,
