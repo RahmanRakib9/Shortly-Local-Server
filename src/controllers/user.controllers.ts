@@ -34,7 +34,7 @@ async function handleGetAllUsers(
   try {
     const users = await userServices.getAllUser();
 
-    res.status(httpStatus.CREATED).json({
+    res.status(httpStatus.OK).json({
       success: true,
       message: 'All Users Retrieved Successfully!',
       payload: users,
