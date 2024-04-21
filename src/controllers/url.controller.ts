@@ -71,7 +71,7 @@ async function handleGetAnalytics(
     const shortId = req.params.shortId;
     const analytics = await urlServices.getAnalytics(shortId);
 
-    res.status(200).json({
+    res.status(httpstatus.OK).json({
       totalClicks: analytics?.visitHistory.length,
       payload: analytics?.visitHistory,
     });
