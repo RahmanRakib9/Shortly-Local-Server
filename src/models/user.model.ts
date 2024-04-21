@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: [true, 'password is required!'],
   },
+  accessToken: {
+    type: [],
+    required: false,
+  },
+  refreshToken: {
+    type: [],
+    required: false,
+  },
 });
 
 const User = mongoose.model('User', userSchema);
