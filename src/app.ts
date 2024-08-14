@@ -5,24 +5,24 @@ import { globalErrorHandler } from './middlewares/globalErrorHandler';
 import userRoutes from './routes/user.route';
 const app: Application = express();
 
-/*************** REGULAR MIDDLEWARE ***************/
+/**REGULAR MIDDLEWARE */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/***************** TEST ROUTE *****************/
+/**TEST ROUTE  */
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello From Node Custom URL Shortener  Application!');
 });
 
-/***************** USER ROUTE *****************/
-app.use('/api/v1', userRoutes);
+/**URL ROUTE  */
+app.use('/api/v1/urls', urlRoutes);
 
-/***************** URL ROUTE *****************/
-app.use('/api/v1', urlRoutes);
+/**USER ROUTE  */
+app.use('/api/v1/users', userRoutes);
 
-/*************** NOT FOUND ROUTE ***************/
+/**NOT FOUND ROUTE  */
 app.use(notFoundHandler);
 
-/*************** GLOBAL ERROR HANDLER ROUTE ***************/
+/**GLOBAL ERROR HANDLER ROUTE  */
 app.use(globalErrorHandler);
 export default app;

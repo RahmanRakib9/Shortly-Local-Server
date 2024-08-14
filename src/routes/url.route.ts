@@ -3,11 +3,11 @@ import { urlControllers } from '../controllers/url.controller';
 
 const router = express.Router();
 
-router.post('/urls', urlControllers.handleCreateNewShortURL);
+router.post('/', urlControllers.handleCreateNewShortURL);
 
-router.get('/urls', urlControllers.handleGetShortURLs);
+router.get('/', urlControllers.handleGetShortURLs);
 
-router.get('/urls/:shortId', urlControllers.handleRedirectUserToGivenURL);
+router.get('/:shortId', urlControllers.handleRedirectUserToGivenURL);
 
 router.get('/analytics/:shortId', urlControllers.handleGetAnalytics);
 

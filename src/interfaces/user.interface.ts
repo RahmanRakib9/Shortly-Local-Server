@@ -1,7 +1,8 @@
+import { User_Role } from '../constants/user.constant';
+
 export interface IUser {
   name: string;
   email: string;
   password: string;
-  accessToken: [];
-  refreshToken: [];
+  role: keyof typeof User_Role;
 }

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { IUser } from '../interfaces/user.interface';
+import { User_Role } from '../constants/user.constant';
 
 const userSchema = new mongoose.Schema<IUser>({
   name: {
@@ -14,13 +15,9 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: [true, 'password is required!'],
   },
-  accessToken: {
-    type: [],
-    required: false,
-  },
-  refreshToken: {
-    type: [],
-    required: false,
+  role: {
+    type: String,
+    enum: Object.keys(User_Role),
   },
 });
 

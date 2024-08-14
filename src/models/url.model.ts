@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { IUrl } from '../interfaces/url.interface';
 
 const urlSchema = new mongoose.Schema<IUrl>(
@@ -13,6 +13,10 @@ const urlSchema = new mongoose.Schema<IUrl>(
       unique: true,
     },
     visitHistory: [{ timestamp: { type: Number } }],
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
   },
   { timestamps: true },
 );
