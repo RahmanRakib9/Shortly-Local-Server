@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
+import config from '../app/config/config';
 
 export function generateUniqueRandomString(length: number = 8): string {
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters = config.characters as string;
   let uniqueString = '';
 
   for (let i = 0; i < length; i++) {

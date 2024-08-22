@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 /**TEST ROUTE  */
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello From Node Custom URL Shortener  Application!');
+  res.send('Hello From Short URL Shortener Application!');
 });
 
 /**URL ROUTE  */

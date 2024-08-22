@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { urlServices } from '../services/url.service';
 import httpstatus from 'http-status';
+import shortUrlValidations from '../schemas/url.schema';
 
 async function handleCreateNewShortURL(
   req: Request,
@@ -8,16 +9,13 @@ async function handleCreateNewShortURL(
   next: NextFunction,
 ) {
   try {
-    const redirectURL = req.body.redirectURL;
+    const payload = req.body;
+    shortUrlValidations.createShortUrlSchema.parse(payload);
 
-    // if (!redirectURL) {
-    //   TODO: handle api error
-    // }
-
-    const shortURL = await urlServices.createShortURL(redirectURL);
+    const shortURL = await urlServices.createShortURL(payload);
     res.status(httpstatus.CREATED).json({
       success: true,
-      message: 'Successfully generated short url',
+      message: 'Short URL Generated Successfully!',
       payload: shortURL,
     });
   } catch (error) {
