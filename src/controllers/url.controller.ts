@@ -70,8 +70,12 @@ async function handleGetAnalytics(
     const analytics = await urlServices.getAnalytics(shortId);
 
     res.status(httpstatus.OK).json({
-      totalClicks: analytics?.visitHistory.length,
-      payload: analytics?.visitHistory,
+      success: true,
+      message: 'Users Analytics Retrieved Successfully!',
+      payload: {
+        totalClicks: analytics?.visitHistory.length,
+        timestamp: analytics?.visitHistory,
+      },
     });
   } catch (error) {
     next(error);
