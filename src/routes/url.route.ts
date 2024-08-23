@@ -11,5 +11,7 @@ router.get('/:shortId', urlControllers.handleRedirectUserToGivenURL);
 
 router.get('/analytics/:shortId', urlControllers.handleGetAnalytics);
 
+router.delete('/:id', urlControllers.handleDeleteShortURL);
+
 const urlRoutes = router;
 export default urlRoutes;

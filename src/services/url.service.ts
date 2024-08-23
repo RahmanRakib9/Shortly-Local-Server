@@ -38,9 +38,15 @@ const getAnalytics = async (shortId: string) => {
   return analytics;
 };
 
+const deleteShortURL = async (id: string) => {
+  await URL.deleteOne({ id });
+  return null;
+};
+
 export const urlServices = {
   createShortURL,
   getShortURLs,
   redirectUserToGivenURL,
   getAnalytics,
+  deleteShortURL,
 };

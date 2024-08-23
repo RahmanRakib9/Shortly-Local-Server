@@ -82,9 +82,24 @@ async function handleGetAnalytics(
   }
 }
 
+async function handleDeleteShortURL(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    await urlServices.deleteShortURL(req.params.id);
+
+    res.end();
+  } catch (error) {
+    next(error);
+  }
+}
+
 export const urlControllers = {
   handleCreateNewShortURL,
   handleRedirectUserToGivenURL,
   handleGetShortURLs,
   handleGetAnalytics,
+  handleDeleteShortURL,
 };
