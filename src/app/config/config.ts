@@ -15,4 +15,5 @@ export default {
   jwt_access_token_secret_key: process.env.JWT_ACCESS_TOKEN_SECRET_KEY,
   jwt_refresh_token_secret_key: process.env.JWT_REFRESH_TOKEN_SECRET_KEY,
   characters: process.env.CHARACTERS,
+  bcrypt_salt_round: process.env.BCRYPT_SALT_ROUND,
 };

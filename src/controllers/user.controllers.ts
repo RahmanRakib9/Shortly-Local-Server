@@ -2,30 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 import userServices from '../services/user.service';
 import httpStatus from 'http-status';
 
-async function handleCreateNewUser(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
-  try {
-    const { name, email, password } = req.body;
-    const user = await userServices.createNewUser(name, email, password);
-    const userPayload = {
-      name: user.name,
-      email: user.email,
-      _id: user._id,
-    };
-
-    res.status(httpStatus.CREATED).json({
-      success: true,
-      message: 'User Created Successfully!',
-      payload: userPayload,
-    });
-  } catch (error) {
-    next(error);
-  }
-}
-
 async function handleGetAllUsers(
   req: Request,
   res: Response,
@@ -64,7 +40,6 @@ async function handleSignInUser(
 }
 
 const userControllers = {
-  handleCreateNewUser,
   handleGetAllUsers,
   handleSignInUser,
 };
