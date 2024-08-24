@@ -47,7 +47,7 @@ async function handleLoginUser(
       secure: config.env == 'production',
     });
 
-    res.status(httpStatus.CREATED).json({
+    res.status(httpStatus.OK).json({
       success: true,
       message: 'User Logged In Successfully!',
       accessToken,
