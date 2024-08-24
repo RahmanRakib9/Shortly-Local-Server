@@ -6,12 +6,17 @@ import config from '../app/config/config';
 import { ILoginUser } from '../interfaces/auth.interface';
 import { comparePassword } from '../utils/comparePassword';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import ApiError from '../error/apiError';
+import httpStatus from 'http-status';
 
 const registerUser = async (userPayload: IUser) => {
   const user = await User.findOne({ email: userPayload.email });
 
   if (user) {
-    throw new Error('User with this email already exist!');
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'User with this email already exist!',
+    );
   }
 
   userPayload.role = User_Role.USER;
@@ -30,7 +35,7 @@ const loginUser = async (userLoginPayload: ILoginUser) => {
   const user = await User.findOne({ email: userLoginPayload.email });
 
   if (!user) {
-    throw new Error('User with this email Not Found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'User with this email Not Found!');
   }
 
   const isPasswordMatched = await comparePassword(
@@ -76,7 +81,7 @@ const generateNewRefreshToken = async (token: string) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    throw new Error('User Not Found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'User with this email Not Found!');
   }
 
   //create jwt payload for regenerating refresh token

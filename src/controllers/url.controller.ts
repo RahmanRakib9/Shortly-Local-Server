@@ -49,11 +49,6 @@ async function handleRedirectUserToGivenURL(
     const shortId = req.params.shortId;
     const result = await urlServices.redirectUserToGivenURL(shortId);
 
-    // if(!result)
-    //   {
-    //   TODO: handle api error
-    //   }
-
     res.redirect(result?.redirectUrl as string);
   } catch (error) {
     next(error);
