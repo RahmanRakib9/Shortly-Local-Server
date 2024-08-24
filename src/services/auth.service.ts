@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 import config from '../app/config/config';
 import { ILoginUser } from '../interfaces/auth.interface';
 import { comparePassword } from '../utils/comparePassword';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const registerUser = async (userPayload: IUser) => {
   const user = await User.findOne({ email: userPayload.email });
@@ -65,8 +65,38 @@ const loginUser = async (userLoginPayload: ILoginUser) => {
   };
 };
 
+const generateNewRefreshToken = async (token: string) => {
+  const verifiedToken = jwt.verify(
+    token,
+    config.jwt_refresh_token_secret_key as string,
+  ) as JwtPayload;
+
+  const { email } = verifiedToken;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    throw new Error('User Not Found!');
+  }
+
+  //create jwt payload for regenerating refresh token
+  const jwtPayload = {
+    email: user.email,
+    role: user.role,
+  };
+
+  const refreshToken = jwt.sign(
+    jwtPayload,
+    config.jwt_refresh_token_secret_key as string,
+    { expiresIn: '10d' },
+  );
+
+  return { refreshToken };
+};
+
 const authServices = {
   registerUser,
   loginUser,
+  generateNewRefreshToken,
 };
 export default authServices;
