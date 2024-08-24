@@ -40,8 +40,23 @@ async function handleGetUser(req: Request, res: Response, next: NextFunction) {
   }
 }
 
+async function handleDeleteUser(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    await userServices.deleteUser(req.params.id);
+
+    res.end();
+  } catch (error) {
+    next(error);
+  }
+}
+
 const userControllers = {
   handleGetAllUsers,
   handleGetUser,
+  handleDeleteUser,
 };
 export default userControllers;

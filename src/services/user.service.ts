@@ -10,5 +10,9 @@ const getUser = async (id: string) => {
   return user;
 };
 
-const userServices = { getAllUser, getUser };
+const deleteUser = async (id: string) => {
+  await User.deleteOne({ _id: id });
+};
+
+const userServices = { getAllUser, getUser, deleteUser };
 export default userServices;
