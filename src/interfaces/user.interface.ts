@@ -6,3 +6,8 @@ export interface IUser {
   password: string;
   role: keyof typeof User_Role;
 }
+
+export interface IUpdateUser {
+  name: string;
+  email: string;
+}

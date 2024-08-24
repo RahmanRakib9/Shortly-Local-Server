@@ -1,3 +1,4 @@
+import { IUpdateUser } from '../interfaces/user.interface';
 import User from '../models/user.model';
 
 const getAllUser = async () => {
@@ -14,5 +15,14 @@ const deleteUser = async (id: string) => {
   await User.deleteOne({ _id: id });
 };
 
-const userServices = { getAllUser, getUser, deleteUser };
+const updateUser = async (id: string, updateUserPayload: IUpdateUser) => {
+  const updatedUser = await User.updateOne(
+    { _id: id },
+    { updateUserPayload },
+    { new: true },
+  );
+  return updatedUser;
+};
+
+const userServices = { getAllUser, getUser, deleteUser, updateUser };
 export default userServices;

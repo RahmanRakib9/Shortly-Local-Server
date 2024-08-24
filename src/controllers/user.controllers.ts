@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import userServices from '../services/user.service';
 import httpStatus from 'http-status';
+import userValidations from '../schemas/user.schema';
 
 async function handleGetAllUsers(
   req: Request,
@@ -54,9 +55,30 @@ async function handleDeleteUser(
   }
 }
 
+async function handleUpdateUser(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const updateUserPayload = req.body;
+    userValidations.updateUserSchema.parse(updateUserPayload);
+
+    await userServices.updateUser(req.params.id, updateUserPayload);
+
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: 'User Updated Successfully!',
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 const userControllers = {
   handleGetAllUsers,
   handleGetUser,
   handleDeleteUser,
+  handleUpdateUser,
 };
 export default userControllers;
