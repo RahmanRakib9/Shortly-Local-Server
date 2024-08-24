@@ -20,7 +20,28 @@ async function handleGetAllUsers(
   }
 }
 
+async function handleGetUser(req: Request, res: Response, next: NextFunction) {
+  try {
+    const user = await userServices.getUser(req.params.id);
+
+    const responsePayload = {
+      name: user?.name,
+      email: user?.email,
+      role: user?.role,
+    };
+
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: 'User Retrieved Successfully!',
+      payload: responsePayload,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 const userControllers = {
   handleGetAllUsers,
+  handleGetUser,
 };
 export default userControllers;
