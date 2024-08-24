@@ -3,6 +3,9 @@ import { IUser } from '../interfaces/user.interface';
 import User from '../models/user.model';
 import bcrypt from 'bcrypt';
 import config from '../app/config/config';
+import { ILoginUser } from '../interfaces/auth.interface';
+import { comparePassword } from '../utils/comparePassword';
+import jwt from 'jsonwebtoken';
 
 const registerUser = async (userPayload: IUser) => {
   const user = await User.findOne({ email: userPayload.email });
@@ -23,7 +26,47 @@ const registerUser = async (userPayload: IUser) => {
   return newUser;
 };
 
+const loginUser = async (userLoginPayload: ILoginUser) => {
+  const user = await User.findOne({ email: userLoginPayload.email });
+
+  if (!user) {
+    throw new Error('User with this email Not Found!');
+  }
+
+  const isPasswordMatched = await comparePassword(
+    userLoginPayload.password,
+    user.password,
+  );
+
+  if (!isPasswordMatched) {
+    throw new Error('Password not matched!');
+  }
+
+  const jwtPayload = {
+    email: user.email,
+    role: user.role,
+  };
+
+  const accessToken = jwt.sign(
+    jwtPayload,
+    config.jwt_access_token_secret_key as string,
+    { expiresIn: '10m' },
+  );
+
+  const refreshToken = jwt.sign(
+    jwtPayload,
+    config.jwt_access_token_secret_key as string,
+    { expiresIn: '10d' },
+  );
+
+  return {
+    accessToken,
+    refreshToken,
+  };
+};
+
 const authServices = {
   registerUser,
+  loginUser,
 };
 export default authServices;

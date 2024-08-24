@@ -5,10 +5,5 @@ const getAllUser = async () => {
   return users;
 };
 
-const signInUser = async (email: string, password: string) => {
-  const user = await User.findOne({ email, password });
-  return user;
-};
-
-const userServices = { signInUser, getAllUser };
+const userServices = { getAllUser };
 export default userServices;

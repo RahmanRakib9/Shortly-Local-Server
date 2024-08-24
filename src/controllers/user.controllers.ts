@@ -20,27 +20,7 @@ async function handleGetAllUsers(
   }
 }
 
-async function handleSignInUser(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
-  try {
-    const { email, password } = req.body;
-    const user = await userServices.signInUser(email, password);
-
-    res.status(httpStatus.OK).json({
-      success: true,
-      message: 'User loggedIn Successfully!',
-      payload: user,
-    });
-  } catch (error) {
-    next(error);
-  }
-}
-
 const userControllers = {
   handleGetAllUsers,
-  handleSignInUser,
 };
 export default userControllers;
