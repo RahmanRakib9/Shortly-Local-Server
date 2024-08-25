@@ -17,4 +17,7 @@ export default {
   characters: process.env.CHARACTERS,
   bcrypt_salt_round: process.env.BCRYPT_SALT_ROUND,
   env: process.env.ENV,
+  superAdmin_name: process.env.SUPER_ADMIN_NAME,
+  superAdmin_email: process.env.SUPER_ADMIN_EMAIL,
+  superAdmin_password: process.env.SUPER_ADMIN_PASSWORD,
 };
