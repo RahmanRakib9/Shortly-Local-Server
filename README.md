@@ -68,7 +68,7 @@ Before you begin, ensure you have met the following requirements:
 **Clone the repository:**
 
    ```bash
-   git clone https://github.com/RahmanRakib9/Shortly-Local-Server.gi
+   git clone https://github.com/RahmanRakib9/Shortly-Local-Server.git
    cd Shortly-Local-Server
    ```
 
@@ -121,7 +121,7 @@ yarn start:dev
 
 Coursify Local Server is deployed and accessible on Vercel. You can view the live project at the following URL:
 
-[Live Project on Vercel](https://learnify-local-server.vercel.app/)
+[Live Project on Vercel](https://shortly-psi-kohl.vercel.app/)
 
 ## API Documentation
 
