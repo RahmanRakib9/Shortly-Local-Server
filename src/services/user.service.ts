@@ -41,8 +41,6 @@ const createAdmin = async (userPayload: IUser) => {
 
   userPayload.role = User_Role.ADMIN;
 
-  userPayload.role = User_Role.USER;
-
   const hashedPassword = await bcrypt.hash(
     userPayload.password,
     Number(config.bcrypt_salt_round),
