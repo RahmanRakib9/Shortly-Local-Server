@@ -1,15 +1,16 @@
 import express from 'express';
 import userControllers from '../controllers/user.controllers';
+import { apiRateLimit } from '../middlewares/apiRateLimit';
 
 const router = express.Router();
 
-router.get('/', userControllers.handleGetAllUsers);
+router.get('/', apiRateLimit, userControllers.handleGetAllUsers);
 
-router.get('/:id', userControllers.handleGetUser);
+router.get('/:id', apiRateLimit, userControllers.handleGetUser);
 
-router.delete('/:id', userControllers.handleDeleteUser);
+router.delete('/:id', apiRateLimit, userControllers.handleDeleteUser);
 
-router.patch('/:id', userControllers.handleUpdateUser);
+router.patch('/:id', apiRateLimit, userControllers.handleUpdateUser);
 
 const userRoutes = router;
 export default userRoutes;
