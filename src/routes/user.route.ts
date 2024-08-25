@@ -15,23 +15,30 @@ router.get(
 
 router.get(
   '/:id',
-  authorize(User_Role.ADMIN, User_Role.SUPER_ADMIN),
   apiRateLimit,
+  authorize(User_Role.ADMIN, User_Role.SUPER_ADMIN),
   userControllers.handleGetUser,
 );
 
 router.delete(
   '/:id',
-  authorize(User_Role.ADMIN, User_Role.SUPER_ADMIN),
   apiRateLimit,
+  authorize(User_Role.ADMIN, User_Role.SUPER_ADMIN),
   userControllers.handleDeleteUser,
 );
 
 router.patch(
   '/:id',
-  authorize(User_Role.ADMIN, User_Role.SUPER_ADMIN),
   apiRateLimit,
+  authorize(User_Role.ADMIN, User_Role.SUPER_ADMIN),
   userControllers.handleUpdateUser,
+);
+
+router.post(
+  '/create-admin',
+  apiRateLimit,
+  authorize(User_Role.SUPER_ADMIN),
+  userControllers.handleCreateAdmin,
 );
 
 const userRoutes = router;

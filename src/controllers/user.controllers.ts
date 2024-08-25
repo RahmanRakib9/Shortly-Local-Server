@@ -75,10 +75,37 @@ async function handleUpdateUser(
   }
 }
 
+async function handleCreateAdmin(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userPayload = req.body;
+    userValidations.createUserSchema.parse(userPayload);
+    const admin = await userServices.createAdmin(userPayload);
+
+    const responsePayload = {
+      name: admin.name,
+      email: admin.email,
+      role: admin.role,
+    };
+
+    res.status(httpStatus.CREATED).json({
+      success: true,
+      message: 'Admin Created Successfully!',
+      payload: responsePayload,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 const userControllers = {
   handleGetAllUsers,
   handleGetUser,
   handleDeleteUser,
   handleUpdateUser,
+  handleCreateAdmin,
 };
 export default userControllers;
